@@ -1,48 +1,30 @@
 <%
- title "Yay! You're on Rails!"
+ title "Rails 5 chat"
  meta_description 'Meta descriptions are useful for SEO purposes.'
- heading "Yay! You're on Rails!"
+ heading "Rails 5 chat"
 %>
 
 <div class="row">
-  <div class="col-sm-8">
-    <p class="lead">
-      You have successfully generated this project
-      with <%= link_to 'orats', 'https://github.com/nickjj/orats' %> v5.0.2.
-    </p>
-
-    <p>
-      <%= image_tag 'https://badge.fury.io/rb/orats.png', alt: 'Gem badge' %>
-      is the latest version.
-    </p>
-
-    <hr/>
-
-    <h3>Learn more about Docker and this project</h3>
-
-    <ul>
-      <li>
-        <%= link_to 'Learn how this application was Dockerized', 'http://nickjanetakis.com/blog/dockerize-a-rails-5-postgres-redis-sidekiq-action-cable-app-with-docker-compose' %>
-      </li>
+  <div class="col-md-9">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
     </ul>
-
-    <hr/>
-
-    <h3>Want to get rid of this page?</h3>
-
-    <p>No problem, just follow these steps:</p>
-
-    <ul>
-      <li>
-        Run <code>docker-compose exec website rails d controller Pages</code>
-      </li>
-      <li>
-        Remove the root route from <code>config/routes.rb</code>
-      </li>
-    </ul>
-    <p>To be honest I could simply change the file without removing it</p>
-
   </div>
 
-  <div class="col-sm-4"></div>
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User list</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+            <li><%= user.email %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
