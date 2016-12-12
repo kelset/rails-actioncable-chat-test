@@ -1,3 +1,2 @@
-# rails-actioncable-chat-test
-small test for chat app in Rails
+# A sample Chat app
 First test app to mess around with ActionCable
