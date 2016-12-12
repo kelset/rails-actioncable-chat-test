@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :conversations, only: [:create] do
+    resources :messages, only: [:create]
+
     member do
       post :close
     end
   end
-
-  resources :messages, only: [:create]
 
 end
