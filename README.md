@@ -3,7 +3,11 @@ First test app to mess around with ActionCable
 
 ## How to
 
-cd inside the folder and run docker-compose up --build
+`cd` inside the folder and run `docker-compose up --build`
+
+then `docker-compose exec website rails db:create db:migrate db:seed`
+
+then `docker-compose exec website rails assets:precompile`
 
 ## Based on
 - https://nickjanetakis.com/blog/dockerize-a-rails-5-postgres-redis-sidekiq-action-cable-app-with-docker-compose
