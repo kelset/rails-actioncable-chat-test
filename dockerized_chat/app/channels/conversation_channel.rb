@@ -13,6 +13,8 @@ class ConversationChannel < ApplicationCable::Channel
       hash[el.values.first] = el.values.last
     end
 
-    Message.create(message_params)
+    # Message.create! message_params
+    # Moving to a proper implementation
+    MessageBroadcastJob.perform_later message_params
   end
 end

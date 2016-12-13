@@ -1,7 +1,8 @@
 class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
-  def perform(message)
+  def perform(message_params)
+    message = Message.create! message_params
     sender = message.user
     recipient = message.conversation.opposed_user(sender)
 
