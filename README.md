@@ -14,5 +14,6 @@ then `docker-compose exec website rails assets:precompile`
 - https://www.nopio.com/blog/rails-real-time-chat-application-part-1/
 - https://www.nopio.com/blog/rails-chat-application-actioncable/
 - https://www.youtube.com/watch?v=GBEDvF1_8B8
+- http://stackoverflow.com/questions/35320791/how-to-use-actioncable-as-api
 
-Huge shoutout to them for writing such beautiful tutorials!
+Huge shoutout to the authors!

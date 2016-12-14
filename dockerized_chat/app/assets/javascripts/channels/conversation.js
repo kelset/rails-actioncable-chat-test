@@ -41,9 +41,10 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
 });
 
 $(document).on('submit', '.new_message', function(e) {
-  // console.log("triggered when pressed")
+  console.log("triggered when pressed")
   e.preventDefault();
   var values = $(this).serializeArray();
+  console.log(values)
   App.conversation.speak(values);
   $(this).trigger('reset');
 });

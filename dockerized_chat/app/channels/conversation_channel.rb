@@ -8,6 +8,16 @@ class ConversationChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
+  def receive(data)
+    message_params = data['message'].each_with_object({}) do |el, hash|
+      hash[el.values.first] = el.values.last
+    end
+
+    # Message.create! message_params
+    # Moving to a proper implementation
+    MessageBroadcastJob.perform_later message_params
+  end
+
   def speak(data)
     message_params = data['message'].each_with_object({}) do |el, hash|
       hash[el.values.first] = el.values.last
