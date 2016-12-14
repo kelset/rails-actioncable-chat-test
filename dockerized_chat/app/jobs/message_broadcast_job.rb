@@ -16,7 +16,8 @@ class MessageBroadcastJob < ApplicationJob
     ActionCable.server.broadcast(
       "conversations-#{user.id}",
       message: render_message(message, user),
-      conversation_id: message.conversation_id
+      conversation_id: message.conversation_id,
+      messages_raw: render_messages_raw(message.conversation),
     )
   end
 
@@ -25,7 +26,8 @@ class MessageBroadcastJob < ApplicationJob
       "conversations-#{user.id}",
       window: render_window(message.conversation, user),
       message: render_message(message, user),
-      conversation_id: message.conversation_id
+      conversation_id: message.conversation_id,
+      messages_raw: render_messages_raw(message.conversation),
     )
   end
 
@@ -42,4 +44,10 @@ class MessageBroadcastJob < ApplicationJob
       locals: { conversation: conversation, user: user }
     )
   end
+
+  def render_messages_raw(conversation)
+    # Here I have the JSON serialization for RN client
+    ActiveModel::Serializer::CollectionSerializer.new(conversation.messages, serializer: MessageSerializer)
+  end
+
 end

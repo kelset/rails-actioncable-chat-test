@@ -9,6 +9,9 @@ class ConversationChannel < ApplicationCable::Channel
   end
 
   def receive(data)
+    # This is the generic fucntion that gets called whenever a "message" command
+    # is received
+
     message_params = data['message'].each_with_object({}) do |el, hash|
       hash[el.values.first] = el.values.last
     end
